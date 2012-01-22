@@ -1,0 +1,30 @@
+Infitweaker is used to modify environment settings of Freetype library with Infinality Patches
+
+This GUI provides a quick way to test different infinality-settings.sh values
+
+For Infinality patches, visit http://www.infinality.net/forum/
+
+
+Infitweaker requires:
+Python
+PyGTK
+Python Imaging Library (PIL)
+NumPy
+
+Install on Fedora:
+su -c 'yum install python numpy pygtk2 python-imaging'
+
+Install freetype-py:
+wget http://freetype-py.googlecode.com/files/freetype-py-0.3.3.tar.gz
+tar xfvz freetype-py-0.3.3.tar.gz
+cd freetype-py-0.3.3
+su -c './setup.py install'
+
+
+To start Infitweaker, from shell run: ./start.sh
+
+Python code was developed using Ecplise with PyDev
+infitweaker.glade was developed with Glade Interface Designer, Glade 2 in Fedora 16
+
+TODO:
++Be able to modify all infinality-settings.sh settings
