@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 #
 #  Infitweaker - Copyright 2012 Alex Kaplan
-#  FreeType high-level python API - Copyright 2011 Nicolas P. Rougier
+#  FreeType high-level python API and rendering - Copyright 2011 Nicolas P. Rougier
 #  Distributed under the terms of the new BSD license.
 #
 # -----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ class pyInfitweaker:
         self.wTree = gtk.glade.XML(self.gladefile, "mainWindow") 
         
         #Get the image to store the preview results
-        self.previewImage = self.wTree.get_widget("image1")
+        self.previewImage = self.wTree.get_widget("previewImage")
         
         
         self.enFilter1 = self.wTree.get_widget("enFilter1")
@@ -45,6 +45,26 @@ class pyInfitweaker:
         self.enFilter4 = self.wTree.get_widget("enFilter4")
         self.enFilter5 = self.wTree.get_widget("enFilter5")
         self.enChrome = self.wTree.get_widget("enChrome")
+        
+        if "INFINALITY_FT_CHROMEOS_STYLE_SHARPENING_STRENGTH" in os.environ:
+            self.enChrome.set_text(os.environ["INFINALITY_FT_CHROMEOS_STYLE_SHARPENING_STRENGTH"])
+        else:
+            self.enChrome.set_text("50")
+            
+        if "INFINALITY_FT_FILTER_PARAMS" in os.environ:
+            filtersList = os.environ["INFINALITY_FT_FILTER_PARAMS"].split()
+            self.enFilter1.set_text(filtersList[0])
+            self.enFilter2.set_text(filtersList[1])
+            self.enFilter3.set_text(filtersList[2])
+            self.enFilter4.set_text(filtersList[3])
+            self.enFilter5.set_text(filtersList[4])
+        else:
+            # let's populate to my defaults
+            self.enFilter1.set_text("0")
+            self.enFilter2.set_text("35")
+            self.enFilter3.set_text("35")
+            self.enFilter4.set_text("35")
+            self.enFilter5.set_text("0")
         
         #Create our dictionay and connect it
         dic = {"on_mainWindow_destroy" : self.destroy,
